@@ -10,8 +10,7 @@ import { AppRegistry, Text } from 'react-native';
 class HelloWorldApp extends Component {
   render() {
     return (
-        <Text>Hello world11!</Text>,
-        <Text>Hello world2222ß!</Text>
+        <Text>Hello world!</Text>
     );
   }
 }
