@@ -6,7 +6,7 @@
  */
 
 import React, { Component } from 'react';
-import { AppRegistry, Text,Image,View,StyleSheet } from 'react-native';
+import { AppRegistry, Text,Image,View,StyleSheet,TextInput } from 'react-native';
 
 class HelloWorldApp extends Component {
   render() {
@@ -104,6 +104,77 @@ const styles = StyleSheet.create({
   }
 })
 
+class FixedDimensionsBasics extends  Component{
+    render(){
+        return(
+            <View>
+                <View style={{width:50,height:50,backgroundColor:'powderblue'}}></View>
+                <View style={{width:100,height:100,backgroundColor:'skyblue'}}></View>
+                <View style={{width:150,height:150,backgroundColor:'steelblue'}}></View>
+            </View>
+        )
+    }
+}
+
+class FlexDimensionsBasics extends Component{
+    render(){
+        return(
+            <View style={{height:300}}>
+                <View style={{flex:1,backgroundColor:'powderblue'}}></View>
+                <View style={{flex:2,backgroundColor:'skyblue'}}></View>
+                <View style={{flex:3,backgroundColor:'steelblue'}}></View>
+            </View>
+        );
+    }
+}
+
+class JustifyContentBasics extends Component{
+    render(){
+        return(
+            <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
+                <View style={{width:50,height:50,backgroundColor:'powderblue'}}></View>
+                <View style={{width:50,height:50,backgroundColor:'skyblue'}}></View>
+                <View style={{width:50,height:50,backgroundColor:'steelblue'}}></View>
+            </View>
+        )
+    }
+}
+
+class AlignItemsBasics extends Component{
+    render(){
+        return(
+            <View style={{flex:1,flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                <View style={{width:50,height:50,backgroundColor:'powderblue'}}></View>
+                <View style={{width:50,height:50,backgroundColor:'skyblue'}}></View>
+                <View style={{width:50,height:50,backgroundColor:'steelblue'}}></View>
+            </View>
+        )
+    }
+}
+
+class PizzaTranslater extends Component{
+    constructor(props){
+        super(props);
+        this.state = {text:''};
+    }
+
+    render(){
+        return(
+            <View style={{padding:10}}>
+                <TextInput style={{height:40}}
+                             placeholder="Type here to translate"
+                  onChangeText={(text) => this.setState({text})}></TextInput>
+                <Text style={{padding:10,fontSize:42}}>
+                    //关于&&----由于对于null 或 false 值，React不会输出任何内容，
+                    //因此可以使用一个后面跟随了期望字符串的boolean值来实现条件判断。
+                    //如果这个boolean值为true，那么后续的字符串会被使用，反之，则不会被使用
+                    {this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
+                </Text>
+            </View>
+        );
+    }
+}
+
 // 注意，这里用引号括起来的'HelloWorldApp'必须和你init创建的项目名一致
 //AppRegistry.registerComponent('hellworld', () => HelloWorldApp);
 
@@ -113,4 +184,14 @@ const styles = StyleSheet.create({
 
 //AppRegistry.registerComponent('hellworld', () => BlinkApp);
 
-AppRegistry.registerComponent('hellworld', () => LotsOfStyles);
+//AppRegistry.registerComponent('hellworld', () => LotsOfStyles);
+
+//AppRegistry.registerComponent('hellworld', () => FixedDimensionsBasics);
+
+//AppRegistry.registerComponent('hellworld', () => FlexDimensionsBasics);
+
+//AppRegistry.registerComponent('hellworld', () => JustifyContentBasics);
+
+//AppRegistry.registerComponent('hellworld', () => AlignItemsBasics);
+
+AppRegistry.registerComponent('hellworld', () => PizzaTranslater);
